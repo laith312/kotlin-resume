@@ -1,0 +1,25 @@
+{
+	"jobs":[
+		{ 	"company":"Hipmunk",
+			"startDate":"Oct 2013",
+			"endDate":"Feb 2014",
+			"title":"Android Software Engineer",
+			"keyTechnologies":"* Android * Java * JSON * Crashlytics * Github * JIRA * Internal Company Analytics (Similar to MixPanel)",
+			"description":"Work in a small team, using my Android knowledge to build new features, enhance code base and fix existing issues. Working in most areas of the Android world; activities, fragments, services, UI, web api's."
+		},
+		{ 	"company":"Just Me Inc",
+			"startDate":"Jan 2012",
+			"endDate":"Oct 2013",
+			"title":"Lead Android Software Engineer",
+			"keyTechnologies":"* Android * Java * JSON * Crittercism * Google Analytics * REST * Github * Eclipse * JIRA",
+			"description":"Lead a small team to develop a mobile social messaging app called just.me. I am an experienced Android Developer with strong skills in object oriented design and extensive Android application framework knowledge. The majority of my time was spent on individual contributions and team work management."
+		},
+		{ 	"company":"E-Trade Financial",
+			"startDate":"July 2008",
+			"endDate":"Jan 2012",
+			"title":"Software Engineer",
+			"keyTechnologies":"* Java * Perl * SQL * XML * XSLT * HTML * C++ * mvn * svn * Quality Center",
+			"description":"I joined E*TRADE Financial straight out of college. Through their mentor program I learned about their MVC style Application Framework. My primary responsibilities included working on Java Components and Nightly Batch Jobs."
+		}
+	]
+}
