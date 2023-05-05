@@ -1,54 +1,57 @@
 package com.alnagem.resume.repository
 
+import android.util.Log
+import androidx.annotation.WorkerThread
 import com.alnagem.resume.R
 import com.alnagem.resume.ResumeApplication
-import com.alnagem.resume.model.Profile
+import com.alnagem.resume.data.Profile
+import com.alnagem.resume.data.ProfileDAO
 import org.json.JSONObject
 
-class ProfileRepository {
+class ProfileRepository(private val profileDAO: ProfileDAO) {
+    private val TAG = "ProfileRepository"
+    private val dbProfiles: List<Profile> = profileDAO.getAllProfiles()
 
-    companion object {
-
-        fun fetchProfileIntro(): String {
-            val fileInputStream = ResumeApplication.appContext.resources.openRawResource(
-                R.raw.about_me
-            )
-            val bytes: ByteArray = ByteArray(fileInputStream.available())
-            fileInputStream.read(bytes)
-            fileInputStream.close()
-
-            val json: JSONObject = getProfileJSONObject()
-
-            if (json.has("profile_intro")) {
-                return json.getString("profile_intro") as String
-            }
-
-            return ""
-        }
-
-        fun fetchProfile(): Profile {
-            val jsonProfile = getProfileJSONObject()
-            return Profile(
-                name = jsonProfile.getString("name"),
-                email = jsonProfile.getString("email"),
-                phone = jsonProfile.getString("phone"),
-                intro = jsonProfile.getString("profile_intro")
-            )
-        }
-
-        private fun getProfileJSONObject(): JSONObject {
-            val fileInputStream = ResumeApplication.appContext.resources.openRawResource(
-                R.raw.about_me
-            )
-            val bytes = ByteArray(fileInputStream.available())
-            fileInputStream.read(bytes)
-            fileInputStream.close()
-
-            val json = JSONObject(String(bytes))
-
-            return json
-        }
+    suspend fun addProfileToDB(profile: Profile) {
+        profileDAO.addProfile(profile)
     }
 
+    @WorkerThread
+    suspend fun fetchProfileIntro(): String {
+        // check DB for entry
+        dbProfiles.let {
+            if (it.isNotEmpty()) {
+                Log.d(TAG, "Record found in DB")
+                return it[0].intro
+            } else {
+                Log.d(TAG, "No records found in the DB")
+            }
+        }
 
+        // No records Found, add profile to DB from R.raw.about_me
+        val profile: Profile = getProfileJSONObject()
+        profileDAO.addProfile(profile)
+        Log.d(TAG, "Record added to DB")
+
+        return profile.intro
+    }
+
+    private fun getProfileJSONObject(): Profile {
+        val fileInputStream = ResumeApplication.appContext.resources.openRawResource(
+            R.raw.about_me
+        )
+        val bytes = ByteArray(fileInputStream.available())
+        fileInputStream.read(bytes)
+        fileInputStream.close()
+
+        val json = JSONObject(String(bytes))
+
+        return Profile(
+            id = 0,
+            name = json.getString("name") as String,
+            email = json.getString("email") as String,
+            intro = json.getString("profile_intro") as String,
+            phone = json.getString("phone") as String
+        )
+    }
 }

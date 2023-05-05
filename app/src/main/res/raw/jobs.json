@@ -1,5 +1,19 @@
 {
 	"jobs":[
+		{ 	"company":"Presto",
+			"startDate":"Mar 2018",
+			"endDate":"Feb 2023",
+			"title":"Senior Android Software Engineer",
+			"keyTechnologies":"* Android * Java * Kotlin * MVVM * JSON * Robolectric * Github * GitLab * JIRA * ",
+			"description":"Work in a small team, using my Android knowledge to build new features, enhance code base and fix existing issues. Working in most areas of the Android world; activities, fragments, services, UI, web api's."
+		},
+		{ 	"company":"VEVO",
+			"startDate":"Jun 2014",
+			"endDate":"Oct 2017",
+			"title":"Senior Android Software Engineer",
+			"keyTechnologies":"* Android * Java * JSON * Crashlytics * Github * JIRA * MVP",
+			"description":"Work/lead small team to modernize and enhance the VEVO mobile platform. Update code base to use MVP and material design. Implemented several complex features such as adding user profiles with multi channel logins and creating a VEVO SDK that would integrate our video steams into any app."
+		},
 		{ 	"company":"Hipmunk",
 			"startDate":"Oct 2013",
 			"endDate":"Feb 2014",

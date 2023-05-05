@@ -1,16 +1,18 @@
 package com.alnagem.resume.ui.aboutme
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.alnagem.resume.R
+import com.alnagem.resume.data.ResumeDataBase
 import com.alnagem.resume.repository.ProfileRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class AboutMeViewModel : ViewModel() {
+class AboutMeViewModel(application: Application) : AndroidViewModel(application) {
 
     val image = MutableLiveData<Int>().apply {
         value = R.drawable.profile_img
@@ -20,17 +22,21 @@ class AboutMeViewModel : ViewModel() {
         value = ""
     }
 
+    private lateinit var repository: ProfileRepository
+
     init {
-        fetchProfileText()
+        val profileDAO = ResumeDataBase.getDatabase(application).profileDAO()
+        viewModelScope.launch(Dispatchers.IO) {
+            repository = ProfileRepository(profileDAO)
+            fetchProfileText()
+        }
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)
-    fun fetchProfileText() {
-        viewModelScope.launch(Dispatchers.IO) {
-            val result = ProfileRepository.fetchProfileIntro()
-            withContext(Dispatchers.Main) {
-                profileText.value = result
-            }
+    suspend fun fetchProfileText() {
+        val result = repository.fetchProfileIntro()
+        withContext(Dispatchers.Main) {
+            profileText.value = result
         }
     }
 }

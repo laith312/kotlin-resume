@@ -24,7 +24,7 @@ class AboutMeFragment : Fragment() {
     ): View {
         _binding = FragmentAboutMeBinding.inflate(inflater, container, false)
 
-        val viewModel = ViewModelProvider(this).get(AboutMeViewModel::class.java)
+        val viewModel = ViewModelProvider(this)[AboutMeViewModel::class.java]
         val image: ImageView = binding.profileImage
         val profileTextView = binding.aboutText
 
