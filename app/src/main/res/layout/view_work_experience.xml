@@ -1,74 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_left_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".05" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent=".1"/>
+        app:layout_constraintGuide_percent=".1" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent=".9"
-        />
+        app:layout_constraintGuide_percent=".9" />
 
     <TextView
         android:id="@+id/title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@id/guideline_left"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/positionName"
+        android:textSize="24sp"
         android:textStyle="bold"
-        android:textSize="18sp"
-        tools:text="Presto"/>
+        app:layout_constraintBottom_toTopOf="@id/positionName"
+        app:layout_constraintStart_toStartOf="@id/guideline_left_title"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Presto" />
 
     <TextView
         android:id="@+id/date"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/positionName"
         app:layout_constraintEnd_toEndOf="@id/guideline_right"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/positionName"
-        tools:text="(Mar 2019 - Feb 2023)"
-        />
+        tools:text="(Mar 2019 - Feb 2023)" />
 
     <TextView
         android:id="@+id/positionName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@id/guideline_right"
         app:layout_constraintStart_toStartOf="@id/guideline_left"
         app:layout_constraintTop_toBottomOf="@id/title"
-        app:layout_constraintEnd_toEndOf="@id/guideline_right"
-        tools:text="Senior Android Software Engineer"/>
+        tools:text="Senior Android Software Engineer" />
 
     <TextView
         android:id="@+id/skills"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:paddingTop="10dp"
-        app:layout_constraintStart_toStartOf="@id/guideline_left"
         app:layout_constraintEnd_toEndOf="@id/guideline_right"
+        app:layout_constraintStart_toStartOf="@id/guideline_left"
         app:layout_constraintTop_toBottomOf="@id/positionName"
-        tools:text="* Android * Java * JSON * Crashlytics * Github * JIRA * Internal Company Analytics (Similar to MixPanel)"/>
+        tools:text="* Android * Java * JSON * Crashlytics * Github * JIRA * Internal Company Analytics (Similar to MixPanel)" />
 
     <TextView
         android:id="@+id/jobDescription"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:paddingTop="10dp"
-        app:layout_constraintStart_toStartOf="@id/guideline_left"
         app:layout_constraintEnd_toEndOf="@id/guideline_right"
+        app:layout_constraintStart_toStartOf="@id/guideline_left"
         app:layout_constraintTop_toBottomOf="@id/skills"
-        tools:text="Work in a small team to use my Android knowledge to build new features, enhance code base and fix existing issues. Working in most areas of the Android world; activities, fragments, services, UI, web api&apos;s."/>
+        tools:text="Work in a small team to use my Android knowledge to build new features, enhance code base and fix existing issues. Working in most areas of the Android world; activities, fragments, services, UI, web api&apos;s." />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
