@@ -16,13 +16,18 @@ class ProfileRepository(private val profileDAO: ProfileDAO) {
         profileDAO.addProfile(profile)
     }
 
+    /*
+     * Attempt to fetch the profile's intro from the DB. If the profile does not exist in the database
+     * the profile will be pulled from the resources R.raw.about_me.json file, then added to
+     * the DB.
+     */
     @WorkerThread
-    suspend fun fetchProfileIntro(): String {
+    suspend fun fetchProfile(): Profile {
         // check DB for entry
         dbProfiles.let {
             if (it.isNotEmpty()) {
                 Log.d(TAG, "Record found in DB")
-                return it[0].intro
+                return it[0]
             } else {
                 Log.d(TAG, "No records found in the DB")
             }
@@ -33,7 +38,7 @@ class ProfileRepository(private val profileDAO: ProfileDAO) {
         profileDAO.addProfile(profile)
         Log.d(TAG, "Record added to DB")
 
-        return profile.intro
+        return profile
     }
 
     private fun getProfileJSONObject(): Profile {

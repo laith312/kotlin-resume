@@ -34,9 +34,9 @@ class AboutMeViewModel(application: Application) : AndroidViewModel(application)
 
     @OptIn(ExperimentalCoroutinesApi::class)
     suspend fun fetchProfileText() {
-        val result = repository.fetchProfileIntro()
+        val result = repository.fetchProfile()
         withContext(Dispatchers.Main) {
-            profileText.value = result
+            profileText.value = result.intro
         }
     }
 }

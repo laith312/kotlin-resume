@@ -10,6 +10,8 @@ abstract class ResumeDataBase : RoomDatabase() {
 
     abstract fun profileDAO(): ProfileDAO
 
+    abstract fun workHistoryDAO(): WorkHistoryDAO
+
     companion object {
         private var INSTANCE: ResumeDataBase? = null
 
